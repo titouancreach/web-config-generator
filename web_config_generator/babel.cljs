@@ -7,12 +7,12 @@
 
 (defn plugin
     "Add a babel plugin"
-    [name, config]
+    [name & {:keys [config] :or {config {}}}]
     (fn [baseconf]
         (add-in baseconf :plugins [name, config])))
 
 (defn preset
     "Add a babel preset"
-    [name, config]
+    [name & {:keys [config] :or {config {}}}]
     (fn [baseconf]
         (add-in baseconf :presets [name, config])))

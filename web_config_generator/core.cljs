@@ -22,7 +22,7 @@
     (run-with-baseconf
         (env "PORT" 9000)
         (env "TEST" "Titouan")
-        (babel/plugin "jsx-transformer2" {:config "titouan2"})
-        (babel/plugin "Test" {:config "titouanszs"})
-        (babel/preset "react-preset" {:test "test"})))
+        (babel/plugin "jsx-transformer2" :config {:loose "titouan2"})
+        (babel/plugin "Test")
+        (babel/preset "react-preset" :config {:test "titouan"})))
 
