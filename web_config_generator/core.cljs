@@ -1,9 +1,10 @@
-(ns configurator.core
-    (:require ["fixture.test" :as config]))
+(ns web-config-generator.core
+    (:require ["web-config-generator.babel" :as babel]
+              ["cljs.pprint"]))
 
 (def baseconf
     "Base configuration"
-    {:env {}})
+    {:env {} :babel {:plugins [] :presets []}})
 
 (defn env
     "Add an environment variable to the config"
@@ -17,10 +18,11 @@
 
 (def run-with-baseconf (partial run baseconf))
 
-
-
-(println
+(cljs.pprint/pprint
     (run-with-baseconf
         (env "PORT" 9000)
-        (env "TEST" "Titouan")))
+        (env "TEST" "Titouan")
+        (babel/plugin "jsx-transformer2" {:config "titouan2"})
+        (babel/plugin "Test" {:config "titouanszs"})
+        (babel/preset "react-preset" {:test "test"})))
 
