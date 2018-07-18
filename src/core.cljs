@@ -15,10 +15,12 @@
     [baseconf & args]
     ((apply comp args) baseconf))
 
+(def run-with-baseconf (partial run baseconf))
+
 
 
 (println
-    (run baseconf
+    (run-with-baseconf
         (env "PORT" 9000)
         (env "TEST" "Titouan")))
 
