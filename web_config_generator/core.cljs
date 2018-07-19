@@ -1,10 +1,11 @@
 (ns web-config-generator.core
   (:require ["web-config-generator.babel" :as babel]
+            ["web-config-generator.webpack" :as webpack]
             ["cljs.pprint"]))
 
 (def baseconf
   "Base configuration"
-  {:env {} :babel {:plugins [] :presets []}})
+  {:env {} :babel {:plugins [] :presets []} :webpack {:entries {} :output {}}})
 
 (defn env
   "Add an environment variable to the config"
@@ -24,5 +25,6 @@
   (env "TEST" "Titouan")
   (babel/plugin "jsx-transformer2" :config {:loose "titouan2"})
   (babel/plugin "Test")
-  (babel/preset "react-preset" :config {:test "titouan"})))
-
+  (babel/preset "react-preset" :config {:test "titouan"})
+  (webpack/entry "bundle.js" "./index.js")
+  (webpack/output "./dist" "bundle.js" "./dist")))
